@@ -20,7 +20,7 @@ export const StudioCarousel = () => {
 
       />
       <div className="absolute opacity-0 flex p-4 h-full w-full  hover:opacity-100 transition-opacity duration-500">
-        <p className="text-xlg self-center  font-marcellus-sc z-30 bg-black/60 text-light text-center mx-5 p-20">{card.content}</p>
+        <p className="text-xl self-center  font-marcellus-sc z-30 bg-black/60 text-light text-center mx-5 p-20">{card.content}</p>
        <Image
         src={card.flippedSrc}
         alt={card.flippedAlt}

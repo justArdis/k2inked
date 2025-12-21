@@ -59,7 +59,7 @@ export const MobileNav = ({ onClose }: MobileNavProps) => {
 
       <nav
         aria-label="Nawigacja mobilna"
-        className="text-light min-h-0 flex-1 overflow-y-auto px-13.5 pt-2 pb-10"
+        className="text-light min-h-0 flex-1 overflow-y-auto overscroll-contain px-13.5 pt-2 pb-10"
       >
         {NAV_MOBILE.map((n, i) => (
           <Fragment key={i}>{renderNode(n)}</Fragment>

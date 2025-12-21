@@ -68,10 +68,10 @@ export const HeaderMobile = ({
     scrollY > 64;
 
   return (
-    <div
+    <aside
       className={[
         "fixed inset-x-0 top-0 z-50 px-4 pt-[env(safe-area-inset-top)] md:hidden",
-        "text-light transition-transform duration-300 will-change-transform",
+        "text-light transition-transform duration-300 will-change-transform","overscroll-contain",
         scrolledPastHero ? "bg-darker/90 backdrop-blur" : "bg-transparent",
         shouldHide ? "-translate-y-full" : "translate-y-0",
         "motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-opacity",
@@ -97,6 +97,6 @@ export const HeaderMobile = ({
 
         <Wrapper />
       </div>
-    </div>
+    </aside>
   );
 };

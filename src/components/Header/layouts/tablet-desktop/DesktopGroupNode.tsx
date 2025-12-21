@@ -8,25 +8,35 @@ import { IconChevron } from "@/icons/IconChevron";
 type Props = {
   node: NavGroup;
   pathname: string;
-  renderLink: (n: NavLink) => React.ReactNode; // already bound to "menu" variant by parent
+  renderLink: (n: NavLink) => React.ReactNode;
 };
 
 export const DesktopGroupNode = ({ node, pathname, renderLink }: Props) => {
-  const childActive = useMemo(
-    () => hasActive(node, pathname),
-    [node, pathname],
-  );
-  const [open, setOpen] = useState<boolean>(false);
+  const childActive = useMemo(() => hasActive(node, pathname), [node, pathname]);
+  const [open, setOpen] = useState(false);
   const hoverTimer = useRef<number | null>(null);
+
+  const canHover = useMemo(() => {
+    if (typeof window === "undefined") return true;
+    return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const onEnter = () => {
+  const clearHoverTimer = () => {
     if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = null;
+  };
+
+  const onEnter = () => {
+    if (!canHover) return;
+    clearHoverTimer();
     setOpen(true);
   };
+
   const onLeave = () => {
-    if (hoverTimer.current) window.clearTimeout(hoverTimer.current);
+    if (!canHover) return;
+    clearHoverTimer();
     hoverTimer.current = window.setTimeout(() => setOpen(false), 80);
   };
 
@@ -38,9 +48,7 @@ export const DesktopGroupNode = ({ node, pathname, renderLink }: Props) => {
     }
   };
 
-  const sections = node.items.filter(
-    (it): it is NavGroup => it.kind === "group",
-  );
+  const sections = node.items.filter((it): it is NavGroup => it.kind === "group");
 
   return (
     <div
@@ -60,9 +68,7 @@ export const DesktopGroupNode = ({ node, pathname, renderLink }: Props) => {
         onKeyDown={onKeyDown}
       >
         <span className={childActive ? "font-bold" : ""}>{node.label}</span>
-        <IconChevron
-          className={`size-6 transition ${open ? "rotate-270" : "rotate-90"}`}
-        />
+        <IconChevron className={`size-6 transition ${open ? "rotate-270" : "rotate-90"}`} />
       </button>
 
       {open && (
@@ -81,7 +87,6 @@ export const DesktopGroupNode = ({ node, pathname, renderLink }: Props) => {
               <ul className="hover:!text-light space-y-1">
                 {section.items.map((item, j) => {
                   if (item.kind !== "link") return null;
-
                   return (
                     <li key={`${i}-${j}`}>
                       <div className="hover:bg-primary cursor-pointer rounded-tr-md rounded-bl-md px-6 py-2 tablet:py-1.5 text-base tracking-[0.12em]">

@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+import { CookiesBanner } from "@/components/CookiesBanner/CookiesBanner";
 
 const inconsolata = localFont({
   src: "./Fonts/Inconsolata.woff2",
@@ -21,7 +22,7 @@ const marcellusSC = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://k2.inked.vercel.app"), // to change later to real domain
+  metadataBase: new URL("https://k2inked.pl"), // to change later to real domain
   title: {
     default: "K2.inked — Studio tatuażu Warszawa",
     template: "%s | K2.inked — Studio tatuażu Warszawa",
@@ -126,7 +127,9 @@ export default function RootLayout({
         )}
       >
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">{children}
+          <CookiesBanner/>
+        </main>
         <Footer />
         <Analytics />
         <SpeedInsights />
@@ -139,7 +142,7 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "TattooParlor",
             name: "K2.inked",
-            url: "https://k2.inked.vercel.app", // to change later to real domain
+            url: "https://k2inked.pl", 
             telephone: "+48 883 308 451",
             priceRange: "$$$",
             address: {

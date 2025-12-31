@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://k2inked.pl/kontakt", lastModified: new Date() },
     { url: "https://k2inked.pl/regulamin", lastModified: new Date() },
     {
-      url: "https://k2inked.pl/polityka-prywatnosci",
+      url: "https://k2inked.pl/polityka-cookies",
       lastModified: new Date(),
     },
     { url: "https://k2inked.pl/klaudia", lastModified: new Date() },

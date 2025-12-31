@@ -17,11 +17,11 @@ export const Form = () => {
 
   if (state.succeeded) {
     return (
-      <div className="my-40 flex flex-col tablet:w-[60%] items-center">
+      <div className="tablet:w-[60%] my-40 flex flex-col items-center">
         <p
           role="status"
           aria-live="polite"
-          className="px-6 mb-20 text-center text-base leading-7.5 font-light tracking-[0.12em] tablet:text-lg"
+          className="tablet:text-lg mb-20 px-6 text-center text-base leading-7.5 font-light tracking-[0.12em]"
         >
           Dziękujemy za kontakt. Postaramy się odpowiedzieć tak szybko, jak to
           możliwe.
@@ -42,7 +42,7 @@ export const Form = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="tablet:w-[60%] flex w-[90%] flex-col gap-6 px-2 desktop:px-8 py-8"
+      className="tablet:w-[60%] desktop:px-8 flex w-[90%] flex-col gap-6 px-2 py-8"
     >
       <div aria-live="polite" className="sr-only">
         {state.submitting ? "Wysyłanie…" : null}
@@ -64,7 +64,7 @@ export const Form = () => {
       </label>
 
       <label htmlFor="email" className="mb-4 font-bold">
-        MAIL:
+        E-MAIL:
         <input
           id="email"
           type="email"
@@ -128,15 +128,14 @@ export const Form = () => {
             ZGODA NA PRZETWARZANIE DANYCH OSOBOWYCH
           </label>
           <p id="dpa-consent-description">
-            Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
-            udzielenia odpowiedzi na przesłane zapytanie, zgodnie z{" "}
+            Zapoznałem/-am się z{" "}
             <Link
               href={path.REGULATIONS}
               className="hover:text-light/80 underline transition duration-300"
             >
               Regulaminem i Polityką Prywatności
-            </Link>
-            .
+            </Link>{" "}
+            i rozumiem, że moje dane zostaną przetworzone w celu obsługi zapytania i udzielenia odpowiedzi.
           </p>
         </div>
       </div>
